@@ -1,0 +1,67 @@
+version: '3'
+services:
+  bootnode:
+    image: dlt-node
+    container_name: bootnode
+    ports:
+      - "30309:30309"
+    env_file: .env
+    command: ./bootnode_start.sh
+    networks:
+      dlt_network:
+        ipv4_address: 172.18.0.4
+
+  node1:
+    image: dlt-node
+    container_name: node1
+    ports:
+      - "3334:3334"
+      - "30303:30303"
+    env_file: .env
+    command: ./node1_start.sh
+    networks:
+      dlt_network:
+        ipv4_address: 172.18.0.5
+
+  node2:
+    image: dlt-node
+    container_name: node2
+    ports:
+      - "3335:3335"
+      - "30304:30304"
+    env_file: .env
+    command: ./node2_start.sh
+    networks:
+      dlt_network:
+        ipv4_address: 172.18.0.6
+
+  node3:
+    image: dlt-node
+    container_name: node3
+    ports:
+      - "3336:3336"
+      - "30305:30305"
+    env_file: .env
+    command: ./node3_start.sh
+    networks:
+      dlt_network:
+        ipv4_address: 172.18.0.7
+
+  node4:
+    image: dlt-node
+    container_name: node4
+    ports:
+      - "3337:3337"
+      - "30306:30306"
+    env_file: .env
+    command: ./node4_start.sh
+    networks:
+      dlt_network:
+        ipv4_address: 172.18.0.8
+
+networks:
+  dlt_network:
+    ipam:
+      driver: default
+      config: 
+        - subnet: 172.18.0.0/16
